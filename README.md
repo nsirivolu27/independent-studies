@@ -1,6 +1,17 @@
 # Kaggle machine learning competitions
 
-All three competitions are entered. The target completion dates below follow Kaggle's written final submission timelines. Deadlines are at 6:59 p.m. New York time (23:59 UTC).
+## Completed research papers
+
+| Competition | Research paper | Status |
+|---|---|---|
+| [RSNA Knee Abnormality Detection](https://www.kaggle.com/competitions/rsna-knee-abnormality-detection) | [CNN Processing in Radiology: Data Preparation and Supervision in Knee MRI](papers/rsna-knee-data-audit.pdf) | **Complete** |
+| [ARC Prize 2026 - ARC-AGI-2](https://www.kaggle.com/competitions/arc-prize-2026-arc-agi-2) | [Learning Rules from Examples: Reasoning and Evaluation in ARC-AGI-2](papers/arc-agi-2-research.pdf) | **Complete** |
+
+Complete indicates the research paper is finished and published here. Kaggle submission status and leaderboard results require a separate submission record.
+
+## Active competitions
+
+All three competitions below are entered. The target completion dates follow Kaggle's written final submission timelines. Deadlines are at 6:59 p.m. New York time (23:59 UTC).
 
 | Competition | Prediction task | Entry deadline | Target completion |
 |---|---|---|---|
