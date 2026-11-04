@@ -29,4 +29,3 @@ Kaggle's Name That LLM overview also displays a January 14 close date in its hea
 | Enveda CASMI 2026 | Mean reciprocal rank at 25 | Pending | Pending |
 | Name That LLM | Balanced accuracy | Pending | Pending |
 
-As of November 3, 2026, this repository has no verified score to report. Every other day, the research review checks each open competition and records measured results with the run date and validation split or Kaggle submission identifier.
