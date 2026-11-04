@@ -29,3 +29,17 @@ Kaggle's Name That LLM overview also displays a January 14 close date in its hea
 | Enveda CASMI 2026 | Mean reciprocal rank at 25 | Pending | Pending |
 | Name That LLM | Balanced accuracy | Pending | Pending |
 
+## Research review — November 4, 2026
+
+The linked Kaggle timelines still list November 30, December 14, and January 13 as the final submission deadlines. Training data and a reproducible baseline are needed for each project before the first local score can be recorded.
+
+| Competition | Proposed first experiment | Evaluation design |
+|---|---|---|
+| Predicting Credit Card Fraud | Compare logistic regression with categorical gradient boosting | Freeze a validation split after inspecting time and customer identifiers, fit preprocessing on training rows, and measure ROC-AUC on predicted probabilities. |
+| Enveda CASMI 2026 | Establish a spectral-library retrieval baseline before attempting neural generation | Hold out molecular identities together, rank up to 25 unique structures, and use the organizer's structure matching and MRR@25. |
+| Name That LLM | Start with character n-grams and a linear classifier | Group shared prompts and duplicate passages across the split where identifiers permit, fit the vocabulary on training text, and measure balanced accuracy. |
+
+CatBoost's ordered boosting and categorical processing motivate the fraud comparison. DiffMS provides a later neural direction for molecular generation using a spectrum transformer and graph diffusion, conditional on suitable chemical formula information. Character n-gram authorship research motivates a lightweight text baseline. These are proposed experiments awaiting competition training data. [CatBoost](https://arxiv.org/abs/1706.09516v5), [DiffMS](https://arxiv.org/abs/2502.09571v2), [Character n-grams for authorship attribution](https://aclanthology.org/N15-1010/).
+
+**Access needed.** Open a signed-in Kaggle competition tab to enable the next data download and submission-history check. This run could not access the authenticated competition pages, and found no competition-named downloads in the checked download directory or project. Current full rules also could not be retrieved through the web reader. All three scores remain pending verification.
+
