@@ -43,5 +43,11 @@ The linked Kaggle timelines still list November 30, December 14, and January 13 
 
 CatBoost's ordered boosting and categorical processing motivate the fraud comparison. DiffMS provides a later neural direction for molecular generation using a spectrum transformer and graph diffusion, conditional on suitable chemical formula information. Character n-gram authorship research motivates a lightweight text baseline. These are proposed experiments awaiting competition training data. [CatBoost](https://arxiv.org/abs/1706.09516v5), [DiffMS](https://arxiv.org/abs/2502.09571v2), [Character n-grams for authorship attribution](https://aclanthology.org/N15-1010/).
 
-**Access needed.** Open a signed-in Kaggle competition tab to enable the next data download and submission-history check. This run could not access the authenticated competition pages, and found no competition-named downloads in the checked download directory or project. Current full rules also could not be retrieved through the web reader. All three scores remain pending verification.
+**Access needed.** Open a signed-in Kaggle competition tab to enable the next data download and submission-history check. The November 6 review still found no competition training data in this project or competition-named downloads in the checked download directory. Authenticated submission history remains inaccessible. All three scores remain pending verification.
+
+### November 6 follow-up
+
+Enveda's published rules specify CC BY-NC 4.0 for competition data, a maximum of five submissions per day, and selection of up to two final submissions. Its code competition runs offline with a nine-hour CPU or GPU notebook limit. Any molecular model comparison must fit that runtime, and data access remains subject to the competition rules. [Rules](https://www.kaggle.com/competitions/enveda-CASMI26-molecule-id-mass-spectra/rules), [code requirements](https://www.kaggle.com/competitions/enveda-CASMI26-molecule-id-mass-spectra).
+
+For the proposed molecular retrieval baseline, record whether the correct structure exists in the candidate library for each held-out molecule. Retrieval cannot recover a structure absent from that library, so report candidate coverage alongside MRR@25. This is a planned diagnostic; execution awaits training data. The fraud and language-attribution baselines also await their training data. No new experiments or scored submissions were verified in this review.
 
