@@ -27,7 +27,7 @@ Kaggle's Name That LLM overview also displays a January 14 close date in its hea
 
 | Study | Metric | Local validation | Kaggle score |
 |---|---|---|---|
-| Predicting Credit Card Fraud | ROC-AUC | Pending | Pending |
+| Predicting Credit Card Fraud | ROC-AUC | 0.9442151782771007 (CatBoost; Nov 6, 2026) | Not submitted; score unavailable |
 | Enveda CASMI 2026 | Mean reciprocal rank at 25 | Pending | Pending |
 | Name That LLM | Balanced accuracy | Pending | Pending |
 
@@ -43,11 +43,30 @@ The linked Kaggle timelines still list November 30, December 14, and January 13 
 
 CatBoost's ordered boosting and categorical processing motivate the fraud comparison. DiffMS provides a later neural direction for molecular generation using a spectrum transformer and graph diffusion, conditional on suitable chemical formula information. Character n-gram authorship research motivates a lightweight text baseline. These are proposed experiments awaiting competition training data. [CatBoost](https://arxiv.org/abs/1706.09516v5), [DiffMS](https://arxiv.org/abs/2502.09571v2), [Character n-grams for authorship attribution](https://aclanthology.org/N15-1010/).
 
-**Access needed.** Open a signed-in Kaggle competition tab to enable the next data download and submission-history check. The November 6 review still found no competition training data in this project or competition-named downloads in the checked download directory. Authenticated submission history remains inaccessible. All three scores remain pending verification.
+**Current access.** Fraud training data was downloaded on November 6 and the first local experiment is complete (see below). Enveda and Name That LLM still need training data. Kaggle API authentication was unsuccessful; the fraud submission CSV is ready locally, but submission and leaderboard score remain unverified.
 
-### November 6 follow-up
+### November 6 early review
 
 Enveda's published rules specify CC BY-NC 4.0 for competition data, a maximum of five submissions per day, and selection of up to two final submissions. Its code competition runs offline with a nine-hour CPU or GPU notebook limit. Any molecular model comparison must fit that runtime, and data access remains subject to the competition rules. [Rules](https://www.kaggle.com/competitions/enveda-CASMI26-molecule-id-mass-spectra/rules), [code requirements](https://www.kaggle.com/competitions/enveda-CASMI26-molecule-id-mass-spectra).
 
-For the proposed molecular retrieval baseline, record whether the correct structure exists in the candidate library for each held-out molecule. Retrieval cannot recover a structure absent from that library, so report candidate coverage alongside MRR@25. This is a planned diagnostic; execution awaits training data. The fraud and language-attribution baselines also await their training data. No new experiments or scored submissions were verified in this review.
+For the proposed molecular retrieval baseline, record whether the correct structure exists in the candidate library for each held-out molecule. Retrieval cannot recover a structure absent from that library, so report candidate coverage alongside MRR@25. This is a planned diagnostic; execution awaits training data. At that early review, the fraud and language-attribution baselines also awaited data. The later fraud experiment is recorded below; no scored Kaggle submissions were verified.
 
+
+## Fraud baseline — November 6, 2026
+
+The downloaded data contains 699,960 labeled training transactions (11,689 fraud cases), 299,984 test transactions, and 24 predictors. There are no missing values or exact duplicate training feature rows; no train/test feature-hash overlaps were found. Transaction IDs are excluded from model inputs.
+
+| Model | Local validation ROC-AUC |
+|---|---|
+| Logistic regression | 0.9410061337880624 |
+| CatBoost | 0.9442151782771007 |
+
+Both models use the same 139,992-row stratified development holdout with 2,338 positive cases (seed 20261106). The other 559,968 rows fit each comparison model. Logistic regression uses training-fitted standardization and one-hot encoding (C=1, maximum 500 optimizer iterations). CatBoost uses depth 6, learning rate 0.08, and at most 200 boosting rounds; early stopping uses a separate 55,997-row inner holdout and patience 80. The selected count is 197 rounds. Neither model uses class weights.
+
+The higher validation AUC selects **CatBoost**, which is then refitted on all labeled rows. Validation is used for this model choice, so it is a development result, not an independent final estimate. No customer identifiers or full timestamps are supplied, preventing customer-grouped or chronological validation. These synthetic-data results do not establish real-world fraud-detection performance.
+
+A local `submission.csv` contains 299,984 rows with the required `id,is_fraud` columns. File checks confirm exact test ID order, unique IDs, finite probabilities in [0,1], and no missing values. It has **not been submitted to Kaggle**; there is no verified public or final leaderboard score.
+
+[Run evidence](results/fraud/2026-11-06-baseline.json) records unrounded scores, source-file hashes, split sizes and hash, package versions, parameters, and submission hash. The local script, saved split, predictions, and model are in ignored `artifacts/fraud-baseline/`; competition data is in ignored `data/`. Training code is retained locally pending publication through the competition's Kaggle sharing channel.
+
+Re-run locally from this checkout: `.\.venv\Scripts\python.exe artifacts/fraud-baseline/train_baseline.py`. This path is local and is not included in the public repository. Source competition: [data](https://www.kaggle.com/competitions/playground-series-s6e11/data), [evaluation](https://www.kaggle.com/competitions/playground-series-s6e11/overview), [rules](https://www.kaggle.com/competitions/playground-series-s6e11/rules).
