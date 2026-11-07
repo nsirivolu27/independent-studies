@@ -30,4 +30,3 @@ This score comes from local validation; a Kaggle score has not been verified. Th
 Training has stopped. The existing submission CSV belongs to the earlier CatBoost baseline; no new CSV was created for the LightGBM model.
 
 [Detailed experiment results](results/fraud/)
-
