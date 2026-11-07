@@ -27,7 +27,7 @@ Kaggle's Name That LLM overview also displays a January 14 close date in its hea
 
 | Study | Metric | Local validation | Kaggle score |
 |---|---|---|---|
-| Predicting Credit Card Fraud | ROC-AUC | 0.9442151782771007 (CatBoost; Nov 6, 2026) | Not submitted; score unavailable |
+| Predicting Credit Card Fraud | ROC-AUC | **0.9442992026859772** (LightGBM; Nov 6, 2026) | No verified score |
 | Enveda CASMI 2026 | Mean reciprocal rank at 25 | Pending | Pending |
 | Name That LLM | Balanced accuracy | Pending | Pending |
 
@@ -43,7 +43,7 @@ The linked Kaggle timelines still list November 30, December 14, and January 13 
 
 CatBoost's ordered boosting and categorical processing motivate the fraud comparison. DiffMS provides a later neural direction for molecular generation using a spectrum transformer and graph diffusion, conditional on suitable chemical formula information. Character n-gram authorship research motivates a lightweight text baseline. These are proposed experiments awaiting competition training data. [CatBoost](https://arxiv.org/abs/1706.09516v5), [DiffMS](https://arxiv.org/abs/2502.09571v2), [Character n-grams for authorship attribution](https://aclanthology.org/N15-1010/).
 
-**Current access.** Fraud training data was downloaded on November 6 and the first local experiment is complete (see below). Enveda and Name That LLM still need training data. Kaggle API authentication was unsuccessful; the fraud submission CSV is ready locally, but submission and leaderboard score remain unverified.
+**Current access.** Fraud training data was downloaded on November 6 and the first local experiment is complete (see below). Enveda and Name That LLM still need training data. Kaggle API authentication was unsuccessful. The original baseline submission CSV is available locally; the later tuning run was stopped, and no newer submission CSV was produced. Submission history and leaderboard score remain unverified.
 
 ### November 6 early review
 
@@ -70,3 +70,21 @@ A local `submission.csv` contains 299,984 rows with the required `id,is_fraud` c
 [Run evidence](results/fraud/2026-11-06-baseline.json) records unrounded scores, source-file hashes, split sizes and hash, package versions, parameters, and submission hash. The local script, saved split, predictions, and model are in ignored `artifacts/fraud-baseline/`; competition data is in ignored `data/`. Training code is retained locally pending publication through the competition's Kaggle sharing channel.
 
 Re-run locally from this checkout: `.\.venv\Scripts\python.exe artifacts/fraud-baseline/train_baseline.py`. This path is local and is not included in the public repository. Source competition: [data](https://www.kaggle.com/competitions/playground-series-s6e11/data), [evaluation](https://www.kaggle.com/competitions/playground-series-s6e11/overview), [rules](https://www.kaggle.com/competitions/playground-series-s6e11/rules).
+
+## Latest fraud results — November 6, 2026
+
+**Training stopped at the user's request. Current best completed result: 0.9442992026859772 local validation ROC-AUC (LightGBM).** The 0.97 target was not reached.
+
+| Completed model | ROC-AUC on the same outer development holdout |
+|---|---|
+| Original CatBoost baseline | 0.9442151782771007 |
+| Tuned LightGBM | **0.9442992026859772** |
+| Spline logistic regression | 0.9435481657852482 |
+
+The LightGBM model improves AUC by 8.40244088765596e-05 on the unchanged 139,992-row stratified holdout (2,338 fraud cases), with 559,968 rows used for fitting. Its raw-feature configuration uses 63 leaves, learning rate 0.04, minimum 100 samples per leaf, L2 regularization 10.0, and 243 boosting rounds selected on the separate inner split. The transaction ID is excluded, and category vocabularies are fitted on training rows.
+
+Six LightGBM configurations, a longer CatBoost run, and three spline-logistic configurations were explored. The inner-selected 50/50 tree blend scored 0.9480826766598741 on the **inner tuning split only**; its outer evaluation did not finish, so that value is not used as the current score. The longer CatBoost outer refit and final training were interrupted. One spline configuration reached its 400-iteration optimizer cap; the selected spline configuration used 170 optimizer iterations on its inner training fit.
+
+The holdout has been reused for model comparison, so these are development results, not an independent final estimate. The small improvement has not been verified on Kaggle. **No new submission CSV was generated for the LightGBM result.** The existing `artifacts/fraud-baseline/submission.csv` still belongs to the original CatBoost baseline and its 0.9442151782771007 local score. No further training remains running from this session.
+
+[Stopped-run evidence](results/fraud/2026-11-06-tuning-stopped.json) and [spline evidence](results/fraud/2026-11-06-spline.json) retain full-precision scores, split/data hashes, configurations, and the completed model's hash. Data, models, code, and row-level predictions remain local.
