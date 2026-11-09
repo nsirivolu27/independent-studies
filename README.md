@@ -1,6 +1,6 @@
-# Independent studies in machine learning
+# Kaggle competitions
 
-Research projects exploring medical imaging, reasoning, and credit card fraud detection.
+Research papers and machine-learning experiments using Kaggle competition datasets.
 
 ## Completed papers
 
@@ -11,20 +11,18 @@ Research projects exploring medical imaging, reasoning, and credit card fraud de
 
 Both papers are complete. This does not indicate a completed competition submission.
 
-## Ongoing study
+## Current competition
 
-| Study and data source | Target completion | Current status |
+| Competition | Deadline | Status |
 |---|---|---|
 | [Credit card fraud detection](https://www.kaggle.com/competitions/playground-series-s6e11/overview) | November 30, 2026 | Models evaluated; training stopped |
 
 The target date follows the competition's written timeline. The deadline is 23:59 UTC.
 
-## Latest fraud result
+## Credit fraud progress
 
-**Best local validation ROC-AUC: 0.9442992026859772 — LightGBM, November 6, 2026.**
+**0.9442992026859772 ROC-AUC — LightGBM**
 
-This score comes from local validation; a Kaggle score has not been verified. The 0.97 target was not reached.
+Calculated locally on 139,992 held-out training transactions using the competition's ROC-AUC metric, which measures how well the model ranks fraudulent transactions above legitimate ones. This is a validation result, not a verified Kaggle leaderboard score.
 
-Training has stopped. The existing submission CSV belongs to the earlier CatBoost baseline; no new CSV was created for the LightGBM model.
-
-[Detailed experiment results](results/fraud/)
+[Detailed results](results/fraud/)
