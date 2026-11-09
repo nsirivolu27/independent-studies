@@ -1,0 +1,75 @@
+{
+  "run_utc": "2026-11-06T23:39:44.096042+00:00",
+  "method": "Additive spline logistic regression",
+  "metric": "ROC-AUC",
+  "continuous_features": [
+    "amount_usd",
+    "hours_since_last_txn",
+    "distance_from_home_km",
+    "card_age_months",
+    "customer_age",
+    "account_balance_usd",
+    "velocity_score",
+    "merchant_risk_score"
+  ],
+  "categorical_features": [
+    "txn_count_last_24h",
+    "cvv_retry_count",
+    "time_of_day_hour",
+    "day_of_week",
+    "prior_disputes",
+    "merchant_category",
+    "card_type",
+    "auth_method",
+    "channel",
+    "device_type",
+    "is_foreign_transaction",
+    "is_new_merchant",
+    "used_vpn",
+    "ip_country_mismatch",
+    "billing_shipping_mismatch",
+    "is_ai_generated_scam_attempt"
+  ],
+  "split_sha256": "bd35146934239f83a2762721f0513a24a9225e5fc53828944d22cff895b2fe23",
+  "data_sha256": {
+    "train.csv": "87eaa10b8d17a7e4f657b8da1c66242431338bdd8b6ad45861521ac0c0e9fbd5",
+    "test.csv": "10f516959020357b565abaaa4fd25baae97fc2f536d0805695bb7cc15c1660f0",
+    "sample_submission.csv": "13fc6ed8b73de5329884ec490f2a0b750cf29a7cda772b78cfa0cf486f6f35fa"
+  },
+  "script_sha256": "fb256d4ae3ffbb5d58361912bbf71140c0d71599c0a67f0bd3c52f59cccd5a47",
+  "trials": [
+    {
+      "knots": 4,
+      "C": 1.0,
+      "inner_auc": 0.9452443788693621,
+      "optimizer_iterations": 400,
+      "seconds": 172.13567260000855
+    },
+    {
+      "knots": 8,
+      "C": 1.0,
+      "inner_auc": 0.946266891750806,
+      "optimizer_iterations": 219,
+      "seconds": 99.87541830004193
+    },
+    {
+      "knots": 8,
+      "C": 0.1,
+      "inner_auc": 0.9463131789016834,
+      "optimizer_iterations": 170,
+      "seconds": 81.24247339996509
+    }
+  ],
+  "kaggle_score": null,
+  "chosen": {
+    "knots": 8,
+    "C": 0.1,
+    "inner_auc": 0.9463131789016834,
+    "optimizer_iterations": 170,
+    "seconds": 81.24247339996509
+  },
+  "validation_auc": 0.9435481657852482,
+  "development_optimizer_iterations": 196,
+  "total_seconds": 443.8862270999234,
+  "complete": true
+}

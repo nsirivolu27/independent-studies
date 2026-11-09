@@ -1,0 +1,103 @@
+{
+  "run_utc": "2026-11-06T19:49:36.462958+00:00",
+  "seed": 20261106,
+  "competition": "playground-series-s6e11",
+  "metric": "ROC-AUC",
+  "data_sha256": {
+    "train.csv": "87eaa10b8d17a7e4f657b8da1c66242431338bdd8b6ad45861521ac0c0e9fbd5",
+    "test.csv": "10f516959020357b565abaaa4fd25baae97fc2f536d0805695bb7cc15c1660f0",
+    "sample_submission.csv": "13fc6ed8b73de5329884ec490f2a0b750cf29a7cda772b78cfa0cf486f6f35fa"
+  },
+  "script_sha256": "e5f8f426a78f5bb9b2f59a5970e0c852e372b75f773f2ed9574f7408786aef13",
+  "split_sha256": "bd35146934239f83a2762721f0513a24a9225e5fc53828944d22cff895b2fe23",
+  "python": "3.12.14",
+  "versions": {
+    "pandas": "3.1.1",
+    "numpy": "2.5.4",
+    "scikit-learn": "1.9.1",
+    "catboost": "1.2.10"
+  },
+  "training_rows": 699960,
+  "test_rows": 299984,
+  "features": 24,
+  "categorical_features": [
+    "merchant_category",
+    "card_type",
+    "auth_method",
+    "channel",
+    "device_type",
+    "is_foreign_transaction",
+    "is_new_merchant",
+    "used_vpn",
+    "ip_country_mismatch",
+    "billing_shipping_mismatch",
+    "is_ai_generated_scam_attempt"
+  ],
+  "numeric_features": [
+    "amount_usd",
+    "hours_since_last_txn",
+    "txn_count_last_24h",
+    "distance_from_home_km",
+    "card_age_months",
+    "customer_age",
+    "account_balance_usd",
+    "cvv_retry_count",
+    "velocity_score",
+    "time_of_day_hour",
+    "day_of_week",
+    "merchant_risk_score",
+    "prior_disputes"
+  ],
+  "positive_counts": {
+    "fit": 9351,
+    "validation": 2338,
+    "inner_train": 8416,
+    "early_stopping": 935
+  },
+  "split_sizes": {
+    "fit": 559968,
+    "validation": 139992,
+    "inner_train": 503971,
+    "early_stopping": 55997
+  },
+  "training_positives": 11689,
+  "validation_note": "Stratified random development holdout; no customer identifiers or full timestamps supplied. Validation used to select between two baselines. No claim of temporal or unseen-customer generalization.",
+  "kaggle_score": null,
+  "models": {
+    "logistic_regression": {
+      "validation_auc": 0.9410061337880624,
+      "seconds": 18.36193909996655,
+      "C": 1.0,
+      "max_iter": 500,
+      "iterations_used": [
+        29
+      ],
+      "class_weight": null
+    },
+    "catboost": {
+      "validation_auc": 0.9442151782771007,
+      "seconds": 288.5296427999856,
+      "selected_iterations": 197,
+      "iteration_cap": 200,
+      "early_stopping_rounds": 80,
+      "parameters": {
+        "depth": 6,
+        "learning_rate": 0.08,
+        "loss_function": "Logloss",
+        "eval_metric": "AUC",
+        "random_seed": 20261106,
+        "thread_count": 6,
+        "allow_writing_files": false
+      }
+    }
+  },
+  "auc_difference_catboost_minus_logistic": 0.0032090444890382486,
+  "selected_model": "catboost",
+  "submission": {
+    "rows": 299984,
+    "sha256": "82f2d8cb0dbccf1a98439f7a71b06432458507333312df6ae8d865769bba7b63",
+    "minimum_probability": 4.496996312452177e-06,
+    "maximum_probability": 0.9990244801499594
+  },
+  "total_seconds": 440.3579785999609
+}

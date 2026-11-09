@@ -1,0 +1,242 @@
+{
+  "run_utc": "2026-11-06T23:24:43.481633+00:00",
+  "target_auc": 0.97,
+  "metric": "ROC-AUC",
+  "seed": 20261106,
+  "baseline_validation_auc": 0.9442151782771007,
+  "data_sha256": {
+    "train.csv": "87eaa10b8d17a7e4f657b8da1c66242431338bdd8b6ad45861521ac0c0e9fbd5",
+    "test.csv": "10f516959020357b565abaaa4fd25baae97fc2f536d0805695bb7cc15c1660f0",
+    "sample_submission.csv": "13fc6ed8b73de5329884ec490f2a0b750cf29a7cda772b78cfa0cf486f6f35fa"
+  },
+  "split_sha256": "bd35146934239f83a2762721f0513a24a9225e5fc53828944d22cff895b2fe23",
+  "script_sha256": "b6fce60b9f0ee3410df8bb2612752bcd2e268eef4900e60de8d975c89ebb9dfa",
+  "split_sizes": {
+    "fit": 559968,
+    "validation": 139992,
+    "inner_train": 503971,
+    "early_stopping": 55997
+  },
+  "positive_counts": {
+    "fit": 9351,
+    "validation": 2338,
+    "inner_train": 8416,
+    "early_stopping": 935
+  },
+  "versions": {
+    "lightgbm": "4.7.0",
+    "catboost": "1.2.10",
+    "pandas": "3.1.1",
+    "numpy": "2.5.4",
+    "scikit-learn": "1.9.1"
+  },
+  "selection_protocol": "Six LightGBM configurations and one longer CatBoost run selected on inner holdout; blend weights chosen on inner holdout. Candidate compared with baseline on the identical development holdout. This reused holdout is not an independent final test.",
+  "trials": [
+    {
+      "name": "raw_small",
+      "engineered": false,
+      "parameters": {
+        "objective": "binary",
+        "metric": "auc",
+        "learning_rate": 0.04,
+        "n_estimators": 1500,
+        "n_jobs": 6,
+        "verbosity": -1,
+        "random_state": 20261106,
+        "deterministic": true,
+        "force_col_wise": true,
+        "num_leaves": 15,
+        "min_child_samples": 150,
+        "reg_lambda": 5.0
+      },
+      "best_iteration": 553,
+      "inner_auc": 0.9471644118433726,
+      "seconds": 46.41060569998808
+    },
+    {
+      "name": "raw_medium",
+      "engineered": false,
+      "parameters": {
+        "objective": "binary",
+        "metric": "auc",
+        "learning_rate": 0.04,
+        "n_estimators": 1500,
+        "n_jobs": 6,
+        "verbosity": -1,
+        "random_state": 20261106,
+        "deterministic": true,
+        "force_col_wise": true,
+        "num_leaves": 31,
+        "min_child_samples": 150,
+        "reg_lambda": 5.0
+      },
+      "best_iteration": 353,
+      "inner_auc": 0.9461050712497745,
+      "seconds": 59.25260500004515
+    },
+    {
+      "name": "raw_large",
+      "engineered": false,
+      "parameters": {
+        "objective": "binary",
+        "metric": "auc",
+        "learning_rate": 0.04,
+        "n_estimators": 1500,
+        "n_jobs": 6,
+        "verbosity": -1,
+        "random_state": 20261106,
+        "deterministic": true,
+        "force_col_wise": true,
+        "num_leaves": 63,
+        "min_child_samples": 100,
+        "reg_lambda": 10.0
+      },
+      "best_iteration": 243,
+      "inner_auc": 0.9472909391202566,
+      "seconds": 46.6247801000718
+    },
+    {
+      "name": "features_small",
+      "engineered": true,
+      "parameters": {
+        "objective": "binary",
+        "metric": "auc",
+        "learning_rate": 0.04,
+        "n_estimators": 1500,
+        "n_jobs": 6,
+        "verbosity": -1,
+        "random_state": 20261106,
+        "deterministic": true,
+        "force_col_wise": true,
+        "num_leaves": 15,
+        "min_child_samples": 150,
+        "reg_lambda": 5.0
+      },
+      "best_iteration": 299,
+      "inner_auc": 0.9449068109318481,
+      "seconds": 37.80978460004553
+    },
+    {
+      "name": "features_medium",
+      "engineered": true,
+      "parameters": {
+        "objective": "binary",
+        "metric": "auc",
+        "learning_rate": 0.04,
+        "n_estimators": 1500,
+        "n_jobs": 6,
+        "verbosity": -1,
+        "random_state": 20261106,
+        "deterministic": true,
+        "force_col_wise": true,
+        "num_leaves": 31,
+        "min_child_samples": 150,
+        "reg_lambda": 5.0
+      },
+      "best_iteration": 214,
+      "inner_auc": 0.9447979011311896,
+      "seconds": 44.77988260006532
+    },
+    {
+      "name": "features_regularized",
+      "engineered": true,
+      "parameters": {
+        "objective": "binary",
+        "metric": "auc",
+        "learning_rate": 0.04,
+        "n_estimators": 1500,
+        "n_jobs": 6,
+        "verbosity": -1,
+        "random_state": 20261106,
+        "deterministic": true,
+        "force_col_wise": true,
+        "num_leaves": 31,
+        "min_child_samples": 400,
+        "reg_lambda": 20.0,
+        "colsample_bytree": 0.85,
+        "subsample": 0.85,
+        "subsample_freq": 1
+      },
+      "best_iteration": 257,
+      "inner_auc": 0.9450596575916269,
+      "seconds": 38.724939799983986
+    }
+  ],
+  "kaggle_score": null,
+  "selected_lightgbm": "raw_large",
+  "catboost": {
+    "parameters": {
+      "iterations": 1000,
+      "depth": 6,
+      "learning_rate": 0.05,
+      "l2_leaf_reg": 8,
+      "loss_function": "Logloss",
+      "eval_metric": "AUC",
+      "random_seed": 20261106,
+      "thread_count": 6,
+      "allow_writing_files": false
+    },
+    "best_iteration_count": 997,
+    "inner_auc": 0.9470870658782894,
+    "seconds": 1051.158110499964
+  },
+  "blend_candidates": [
+    {
+      "lightgbm_weight": 0.0,
+      "inner_auc": 0.9470870658782894
+    },
+    {
+      "lightgbm_weight": 0.25,
+      "inner_auc": 0.9477970288038938
+    },
+    {
+      "lightgbm_weight": 0.5,
+      "inner_auc": 0.9480826766598741
+    },
+    {
+      "lightgbm_weight": 0.75,
+      "inner_auc": 0.9479540516019179
+    },
+    {
+      "lightgbm_weight": 1.0,
+      "inner_auc": 0.9472909391202566
+    }
+  ],
+  "selected_lightgbm_weight": 0.5,
+  "refit_execution": {
+    "threads": 2,
+    "used_ram_limit": "2gb",
+    "separate_model_processes": true,
+    "reason": "Original refit interrupted after host memory load reached 98 percent; completed tuning reused."
+  },
+  "resume_script_sha256": "0e867b384e3375fb3d4f4d644ed472b1b9918bd131187e069bb080ccea183049",
+  "completed_refit_seconds": {
+    "lgbm-validation": 95.66526589996647
+  },
+  "status": "stopped_by_user",
+  "completed_outer_validation": {
+    "baseline_catboost": 0.9442151782771007,
+    "tuned_lightgbm": 0.9442992026859772,
+    "spline_logistic_regression": 0.9435481657852482
+  },
+  "best_completed_model": {
+    "name": "LightGBM",
+    "validation_auc": 0.9442992026859772,
+    "difference_from_baseline": 8.40244088765596e-05,
+    "training_rows": 559968,
+    "validation_rows": 139992,
+    "configuration": "raw_large",
+    "boosting_rounds": 243,
+    "prediction_sha256": "b49a252521e3325a3298f68cc288e1536680794286d65f3eb3989974026f7a87",
+    "model_sha256": "a39fd4205ea235d0e9bba1d81c809e1494f1d25f48df412c312d7306a1fd6891"
+  },
+  "unfinished_work": "Longer CatBoost outer-holdout refit, blend outer-holdout evaluation, and full-training refit stopped. No new submission CSV was produced.",
+  "unfinished_refit_execution": {
+    "model": "CatBoost",
+    "threads": 6,
+    "used_ram_limit": "3gb",
+    "script_sha256": "6a8f7ca8f0376e5559f276cce209e05ee8d01cf1e2e1039dba5e97bc2ac5752c",
+    "status": "interrupted_by_user_before_completion"
+  },
+  "achieved_target_on_completed_outer_validation": false
+}
